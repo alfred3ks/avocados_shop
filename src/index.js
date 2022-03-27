@@ -26,8 +26,12 @@ window
             image.src = `${base_url}${item.image}`;
             const title = document.createElement('h2');
             title.textContent = item.name;
+            // title.style.fontSize = '2rem';
+            title.className = 'titulo text-red-600';
             const price = document.createElement('div');
             price.textContent = item.price;
+            // Clase de tailwind
+            price.className = 'text-xl';
 
             // Creamos un contenedor para image,title,price
             const container = document.createElement('div');
