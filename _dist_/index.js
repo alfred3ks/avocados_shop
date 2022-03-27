@@ -1,5 +1,7 @@
 // Conexion con la API:
 const url = 'https://platzi-avo.vercel.app/api/avo';
+const base_url = 'https://platzi-avo.vercel.app';
+const appNode = document.querySelector('#app');
 
 // Web api usando fetch
 // conectarnos al servidor usando promesas
@@ -18,11 +20,14 @@ window
         responseJson.data.forEach(item => {
             // console.log(item);
             // console.log(item.name);
+            // console.log(item.price);
             // Creamos los items:
             const image = document.createElement('img');
+            image.src = `${base_url}${item.image}`;
             const title = document.createElement('h2');
+            title.textContent = item.name;
             const price = document.createElement('div');
-            
+            price.textContent = item.price;
 
             // Creamos un contenedor para image,title,price
             const container = document.createElement('div');
@@ -33,6 +38,7 @@ window
 
         });
         // Agregamos el container al body
-        document.body.append(...todosLosItems);
+        // document.body.append(...todosLosItems);
+        appNode.append(...todosLosItems);
     });
 
