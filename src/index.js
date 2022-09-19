@@ -3,10 +3,22 @@ const url = 'https://platzi-avo.vercel.app/api/avo';
 const base_url = 'https://platzi-avo.vercel.app';
 const appNode = document.querySelector('#app');
 
+// Nos conectamos a la API de internalización para los precios.
+const formatPrice = (price) => {
+    const newPrice = new Intl.NumberFormat('en-EN',
+        {
+            style: 'currency',
+            currency: 'EUR'
+        }
+    ).format(price)
+
+    return newPrice;
+
+}
+
 // Web api usando fetch
 // conectarnos al servidor usando promesas
-window
-    .fetch(url)
+fetch(url)
     // procesar la respuesta y convertirla en JSON
     .then(respuesta => respuesta.json())
     // JSON -> Data -> renderizar info en browser
@@ -29,7 +41,8 @@ window
             // title.style.fontSize = '2rem';
             title.className = 'titulo text-red-600';
             const price = document.createElement('div');
-            price.textContent = item.price;
+            // Usamos la API para el precio:
+            price.textContent = formatPrice(item.price);
             // Clase de tailwind
             price.className = 'text-xl';
 
